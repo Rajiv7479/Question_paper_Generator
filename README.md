@@ -42,15 +42,17 @@
       "easy":20           // 20%
     }
     
-    Explanation: generate a question paper of 100 marks total of which 20% (ie, 20 marks) worth of questions should
-    have the Difficulty = Easy, 50% having  Difficulty = Medium and 30% having Difficulty = Hard
+    Explanation: generate a question paper of 100 marks total of which 20% (ie, 20 marks) 
+    worth of questions should have the Difficulty = Easy, 50% having  Difficulty = Medium
+    and 30% having Difficulty = Hard
 
       
 ## Edge Cases
     1. if totalMarks field is missing then throw error "Total marks field is required"
     2. Sum of percentage of all the difficulty must be equal to 100%
-    3. if number of question of a particular difficulty exist in data is smaller than the number of question of that difficulty
-       required in question paper then throw error " No. question of difficulty : {Difficulty} is lesser then required number "
+    3. if number of question of a particular difficulty exist in data is smaller than
+       the number of question of that difficulty required in question paper then throw
+       error " No. question of difficulty : {Difficulty} is lesser then required number "
        Example :
          required No. of question of difficulty Hard : 30
          No. of question in data of difficulty Hard : 25
