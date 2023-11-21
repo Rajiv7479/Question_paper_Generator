@@ -21,6 +21,22 @@ export const questionPaper = (req, res) => {
     //  Example : medium : 45 marks    leftMarks= 45%10 = 5 marks
     //  we cann't assigne medium question for 5 marks;
 
+    if (!totalMarks) {
+      console.error(`Total Marks field must not be empty!!!`);
+      return;
+    }
+
+    let totalPercentage = 0;
+    for (const percentage in difficultyDistribution) {
+      totalPercentage += difficultyDistribution[percentage];
+    }
+    if (totalPercentage != 100) {
+      console.log(
+        `Total Percentage :${totalPercentage} , Sum of percentage of all the difficulty must be equal to 100%`
+      );
+      return;
+    }
+
     for (const difficulty in difficultyDistribution) {
       const percentage = difficultyDistribution[difficulty];
       const requiredMarks = Math.round((totalMarks * percentage) / 100);
@@ -34,6 +50,11 @@ export const questionPaper = (req, res) => {
       const questionsOfDifficulty = questions.filter(
         (question) => question.Difficulty == difficulty
       );
+
+      if (requiredQuestion > questionsOfDifficulty.length) {
+        console.error(`Insufficient questions of difficulty ${difficulty}`);
+        return;
+      }
       // console.log(questionsOfDifficulty);
 
       // Shuffle the array to randomize the selection
